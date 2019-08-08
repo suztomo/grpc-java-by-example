@@ -29,7 +29,7 @@
 
     <modules>
         <module>chat-server</module>
-        <module>chat-javafx-client</module>
+<!--        <module>chat-javafx-client</module> -->
         <module>chat-vaadin-client</module>
   </modules>
 </project>

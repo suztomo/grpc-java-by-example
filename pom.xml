@@ -75,6 +75,40 @@
     </dependencyManagement>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>linkage-checker-enforcer-rules</artifactId>
+                        <version>0.2.5-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <!-- Important! Should run after compile -->
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <LinkageCheckerRule
+                                        implementation="com.google.cloud.tools.dependencies.enforcer.LinkageCheckerRule">
+                                    <reportOnlyReachable>true</reportOnlyReachable>
+                                    <level>WARN</level>
+                                </LinkageCheckerRule>
+
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
