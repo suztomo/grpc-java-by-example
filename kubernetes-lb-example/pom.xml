@@ -22,6 +22,6 @@
         <module>echo-server</module>
         <module>echo-client-simple</module>
         <module>echo-client-lb-dns</module>
-        <module>echo-client-lb-api</module>
+<!--        <module>echo-client-lb-api</module> -->
     </modules>
 </project>

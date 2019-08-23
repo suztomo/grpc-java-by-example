@@ -41,7 +41,7 @@ public class GuestbookServiceGrpcImpl extends GuestbookServiceGrpc.GuestbookServ
 
   @Override
   public void findOne(FindOneRequest request, StreamObserver<GuestbookEntry> responseObserver) {
-    GuestbookEntryDomain entry = repository.findOne(request.getId());
+    GuestbookEntryDomain entry = repository.findById(request.getId()).get();
     if (entry != null) {
       responseObserver.onNext(entry.toProto());
     }
@@ -50,7 +50,7 @@ public class GuestbookServiceGrpcImpl extends GuestbookServiceGrpc.GuestbookServ
 
   @Override
   public void delete(DeleteRequest request, StreamObserver<DeleteResponse> responseObserver) {
-    repository.delete(request.getId());
+    repository.deleteById(request.getId());
     responseObserver.onNext(DeleteResponse.getDefaultInstance());
     responseObserver.onCompleted();
   }
